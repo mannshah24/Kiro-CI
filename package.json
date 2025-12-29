@@ -1,0 +1,39 @@
+{
+  "name": "kiro-ci",
+  "version": "1.0.0",
+  "description": "Local-First Trustless Pipeline with AI-Powered Auto-Fix and On-Chain Attestations",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "forge test",
+    "hook:install": "node .kiro/hooks/install.js",
+    "deploy": "forge script script/DeployVerified.s.sol:DeployVerified --rpc-url $RPC_URL --broadcast --verify",
+    "agent": "node --loader ts-node/esm .kiro/hooks/pre-commit-agent.ts"
+  },
+  "keywords": [
+    "kiro",
+    "ci",
+    "blockchain",
+    "attestation",
+    "eas",
+    "ai-agent",
+    "foundry"
+  ],
+  "author": "Kiro-CI Team",
+  "license": "MIT",
+  "dependencies": {
+    "@ethereum-attestation-service/eas-sdk": "^2.5.0",
+    "ethers": "^6.10.0",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "simple-git": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

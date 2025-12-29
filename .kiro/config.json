@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "version": "1.0.0",
+  "project": {
+    "name": "Kiro-CI",
+    "description": "Local-First Trustless Pipeline with AI-Powered Auto-Fix",
+    "repository": "https://github.com/yourorg/kiro-ci"
+  },
+  "ci": {
+    "enabled": true,
+    "minCoverage": 90,
+    "maxRetries": 3,
+    "strictMode": true,
+    "autoFix": {
+      "enabled": true,
+      "strategies": [
+        "reentrancy",
+        "overflow",
+        "access-control"
+      ]
+    }
+  },
+  "blockchain": {
+    "network": "base-sepolia",
+    "rpcUrl": "https://sepolia.base.org",
+    "easContract": "0xC2679fBD37d54388Ce493F1DB75320D236e1815e",
+    "schemaUID": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    "attestation": {
+      "enabled": true,
+      "revocable": false,
+      "expirationTime": 0,
+      "recipient": "0x0000000000000000000000000000000000000000"
+    }
+  },
+  "hooks": {
+    "preCommit": {
+      "enabled": true,
+      "script": ".kiro/hooks/pre-commit-agent.ts",
+      "parallel": false,
+      "failOnError": false
+    }
+  },
+  "testing": {
+    "framework": "foundry",
+    "commands": {
+      "test": "forge test --json",
+      "coverage": "forge coverage --json"
+    },
+    "thresholds": {
+      "statements": 90,
+      "branches": 85,
+      "functions": 90,
+      "lines": 90
+    }
+  },
+  "agent": {
+    "model": "mock-auto-patcher",
+    "temperature": 0.2,
+    "maxTokens": 2000,
+    "timeoutSeconds": 30,
+    "rules": [
+      {
+        "errorPattern": "reentrancy|reenter",
+        "fix": "inject-reentrancy-guard",
+        "priority": "high"
+      },
+      {
+        "errorPattern": "overflow|underflow",
+        "fix": "use-checked-math",
+        "priority": "high"
+      },
+      {
+        "errorPattern": "unauthorized|onlyOwner",
+        "fix": "add-access-control",
+        "priority": "medium"
+      }
+    ]
+  },
+  "reporting": {
+    "verbose": true,
+    "colors": true,
+    "logFile": ".kiro/logs/ci.log",
+    "notifications": {
+      "onSuccess": true,
+      "onFailure": true,
+      "onAttestation": true
+    }
+  }
+}
