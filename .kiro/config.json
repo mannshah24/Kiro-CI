@@ -22,14 +22,23 @@
   },
   "blockchain": {
     "network": "base-sepolia",
+    "chainId": 84532,
     "rpcUrl": "https://sepolia.base.org",
-    "easContract": "0xC2679fBD37d54388Ce493F1DB75320D236e1815e",
-    "schemaUID": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    "blockExplorer": "https://sepolia.basescan.org",
+    "easContract": "0x4200000000000000000000000000000000000021",
+    "easSchemaRegistry": "0x4200000000000000000000000000000000000020",
+    "easGraphQL": "https://base-sepolia.easscan.org/graphql",
+    "easExplorer": "https://base-sepolia.easscan.org",
+    "schemaUID": "",
     "attestation": {
       "enabled": true,
       "revocable": false,
       "expirationTime": 0,
       "recipient": "0x0000000000000000000000000000000000000000"
+    },
+    "contracts": {
+      "kiroResolver": "",
+      "kiroGatekeeper": ""
     }
   },
   "hooks": {
@@ -44,7 +53,8 @@
     "framework": "foundry",
     "commands": {
       "test": "forge test --json",
-      "coverage": "forge coverage --json"
+      "coverage": "forge coverage --json",
+      "build": "forge build"
     },
     "thresholds": {
       "statements": 90,
