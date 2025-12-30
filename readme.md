@@ -1,15 +1,52 @@
-# 🔐 Kiro-CI: Trustless Deployment Pipeline
+# 🔐 Kiro-CI: AI-Powered Trustless Deployment Pipeline
 
-> **Local-First CI with AI-Powered Auto-Fix and On-Chain Attestations**
+[![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white)](https://ethereum.org/)
+[![Solidity](https://img.shields.io/badge/Solidity-e6e6e6?style=for-the-badge&logo=solidity&logoColor=black)](https://soliditylang.org/)
+[![Base](https://img.shields.io/badge/Base-0052FF?style=for-the-badge&logo=coinbase&logoColor=white)](https://base.org/)
+[![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-Kiro-CI is a revolutionary smart contract deployment pipeline that ensures code quality through AI-powered auto-fixing and cryptographic attestations on Base Sepolia.
+> **🏆 Built for Hackxios 2K25 - ETHIndia Track**
+> 
+> **Revolutionizing Smart Contract Deployments with AI Auto-Fix & On-Chain Attestations**
 
-## 🌟 Features
+## 🎯 Problem Statement
 
-- **🤖 AI Auto-Fix**: Automatically detects and fixes common vulnerabilities (reentrancy, overflow, access control)
-- **🔐 On-Chain Attestations**: Every successful CI run creates an EAS attestation on Base Sepolia
-- **🚀 Secure Deployment**: Contracts can only be deployed with valid attestations
-- **📊 Live Dashboard**: Real-time monitoring of attestations and deployments
+Traditional CI/CD pipelines for smart contracts suffer from:
+- ❌ Manual security reviews that miss vulnerabilities
+- ❌ No cryptographic proof of code quality
+- ❌ Centralized trust in deployment gatekeepers
+- ❌ Expensive audits for every deployment
+
+## 💡 Solution
+
+**Kiro-CI** is an AI-powered, trustless deployment pipeline that:
+- ✅ Automatically detects and fixes vulnerabilities using AI
+- ✅ Creates immutable on-chain attestations via Ethereum Attestation Service (EAS)
+- ✅ Enables verifiable, permissionless smart contract deployments
+- ✅ Provides real-time dashboard for attestation monitoring
+
+## 🌟 Key Features
+
+### 🤖 AI-Powered Auto-Fix
+- Detects common vulnerabilities (reentrancy, overflow, access control issues)
+- Automatically generates secure code fixes
+- Validates fixes against best practices
+
+### 🔐 On-Chain Attestations
+- Every successful CI run creates an EAS attestation on Base Sepolia
+- Stores commit hash, project ID, and test results on-chain
+- Immutable proof of code quality
+
+### 🚀 Trustless Deployment
+- Smart contracts can only be deployed with valid attestations
+- Uses CREATE2 for deterministic addresses
+- No centralized gatekeepers required
+
+### 📊 Live Dashboard
+- Real-time monitoring of attestations
+- GraphQL integration with EAS
+- Beautiful Next.js frontend
 
 ## 🏗️ Architecture
 
@@ -26,85 +63,78 @@ Kiro-CI is a revolutionary smart contract deployment pipeline that ensures code 
 └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
-## 📋 Prerequisites
+## 🛠️ Tech Stack
 
-- [Node.js](https://nodejs.org/) >= 18
-- [Foundry](https://book.getfoundry.sh/) (for smart contract development)
-- WSL (Windows Subsystem for Linux) - for Windows users
+### Smart Contracts
+- **Solidity 0.8.20**: Core contract language
+- **Foundry**: Development framework
+- **OpenZeppelin**: Security patterns (Ownable, Pausable, ReentrancyGuard)
+- **EAS (Ethereum Attestation Service)**: On-chain attestations
+
+### Frontend
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **TailwindCSS**: Styling
+- **GraphQL**: EAS data querying
+
+### Blockchain
+- **Base Sepolia**: Testnet deployment
+- **EAS Contract**: `0x4200000000000000000000000000000000000021`
+- **Schema Registry**: `0x4200000000000000000000000000000000000020`
 
 ## 🚀 Quick Start
 
-### 1. Install Dependencies
+### Prerequisites
+- Node.js >= 18
+- Foundry (for smart contracts)
+- MetaMask or any Web3 wallet
+
+### Installation
 
 ```bash
-# In CMD (Windows)
+# Clone the repository
+git clone <repository-url>
+cd kiro-ci
+
+# Install dependencies
 npm install
 
-# In WSL (for Foundry)
-cd "/mnt/c/Users/Dhruv Patel/OneDrive/Desktop/New folder"
-foundryup
+# Install Foundry dependencies (in WSL or Linux)
 forge install
 ```
 
-### 2. Setup Environment
+### Environment Setup
+
 
 ```bash
 # Copy environment template
 cp .env.example .env
 
-# Edit with your values
-# - PRIVATE_KEY: Your wallet private key
-# - KIRO_AGENT: Your wallet address
-# - RPC_URL: Base Sepolia RPC
+# Edit .env with your values:
+# PRIVATE_KEY=your_wallet_private_key
+# KIRO_AGENT=your_wallet_address
+# RPC_URL=https://sepolia.base.org
+# EAS_CONTRACT=0x4200000000000000000000000000000000000021
+# SCHEMA_UID=<your_registered_schema_uid>
 ```
 
-### 3. Get Testnet ETH (FREE)
+### Build & Test
 
-You need Base Sepolia testnet ETH to deploy contracts. Choose any faucet below:
-
-**🚰 Multiple FREE Faucet Options:**
-
-1. **QuickNode** (No account needed): https://faucet.quicknode.com/base/sepolia
-   - Amount: 0.05 ETH per request
-   
-2. **Alchemy** (Recommended - Free account): https://www.alchemy.com/faucets/base-sepolia
-   - Amount: 0.1 ETH per day
-   - Requires: Free Alchemy account
-   
-3. **Base Official**: https://portal.cdp.coinbase.com/products/faucet
-   - Amount: 0.1 ETH per day
-   - Requires: Coinbase account
-   
-4. **LearnWeb3**: https://learnweb3.io/faucets/base_sepolia
-   - Amount: 0.05 ETH
-   - Requires: Free account
-
-5. **Bridge from Ethereum Sepolia** (Alternative):
-   - Get ETH Sepolia from: https://sepoliafaucet.com/
-   - Bridge to Base Sepolia: https://bridge.base.org/
-
-**Verify your balance:**
 ```bash
-# In WSL
-cast balance YOUR_ADDRESS --rpc-url https://sepolia.base.org
+# Compile contracts
+forge build
+
+# Run tests (53 tests)
+forge test -vv
+
+# Check coverage
+forge coverage
 ```
 
-### 4. Register EAS Schema
+### Deploy to Base Sepolia
 
 ```bash
-# View schema registration instructions
-forge script script/RegisterSchema.s.sol:RegisterSchema -vvvv
-
-# Or register via web UI at:
-# https://base-sepolia.easscan.org/schema/create
-# Schema: bytes32 commitHash, string projectId, bool passedTests
-```
-
-### 5. Deploy Contracts
-
-```bash
-# In WSL
-source .env
+# Deploy smart contracts
 forge script script/DeployGatekeeper.s.sol:DeployGatekeeper \
   --rpc-url $RPC_URL \
   --broadcast \
@@ -112,47 +142,192 @@ forge script script/DeployGatekeeper.s.sol:DeployGatekeeper \
   -vvvv
 ```
 
-### 6. Run Demo
+### Run Frontend
 
 ```bash
-# In CMD
+cd web
 npm install
-node demo.js
+npm run dev
+
+# Open http://localhost:3000
 ```
 
 ## 📁 Project Structure
 
 ```
-├── contracts/
-│   ├── KiroGatekeeper.sol    # Main deployment gatekeeper
-│   └── KiroResolver.sol      # Attestation data decoder
-├── script/
-│   ├── DeployGatekeeper.s.sol # Deployment script
-│   └── RegisterSchema.s.sol   # Schema registration helper
-├── test/
-│   ├── KiroGatekeeper.t.sol  # Gatekeeper tests
-│   └── KiroResolver.t.sol    # Resolver tests
-├── web/                      # Frontend dashboard
-├── .kiro/                    # CI configuration
-└── demo.js                   # Demo runner
+kiro-ci/
+├── contracts/              # Smart contracts
+│   ├── KiroGatekeeper.sol # Main deployment gatekeeper
+│   └── KiroResolver.sol   # Attestation data decoder
+├── script/                # Deployment scripts
+│   ├── DeployGatekeeper.s.sol
+│   └── RegisterSchema.s.sol
+├── test/                  # Contract tests (53 tests)
+│   ├── KiroGatekeeper.t.sol
+│   └── KiroResolver.t.sol
+├── web/                   # Next.js frontend
+│   ├── app/              # App Router
+│   ├── components/       # React components
+│   └── public/          # Static assets
+├── .kiro/                # CI configuration
+│   └── config.json      # Agent settings
+└── demo.js              # Demo script
 ```
 
-## 🔧 Contracts
+## 🔧 Smart Contracts
 
 ### KiroGatekeeper
 
-The main contract that gates deployments based on EAS attestations:
+Main contract that validates attestations and deploys contracts using CREATE2.
 
-- **deploySecurely**: Deploy bytecode only with valid attestation
-- **computeAddress**: Predict CREATE2 deployment address
-- **Admin functions**: Update attester, schema, resolver; pause/unpause
+**Key Functions:**
+- `deploySecurely(bytes32 attestationUID, bytes32 salt, bytes memory bytecode)`: Deploy with attestation
+- `computeAddress(bytes32 attestationUID, bytes32 salt, bytes memory bytecode)`: Predict address
+- `pause()` / `unpause()`: Emergency controls
+- `updateAttester(address newAttester)`: Change trusted attester
+- `updateSchemaUID(bytes32 newSchemaUID)`: Update EAS schema
+
+**Security Features:**
+- OpenZeppelin Ownable, Pausable, ReentrancyGuard
+- Attestation validation (revoked, expired, attester)
+- Custom errors for gas optimization
+- Event logging for transparency
 
 ### KiroResolver
 
-Decodes and validates attestation data:
+Utility contract for EAS attestation data encoding/decoding.
 
-- **decode**: Extract commitHash, projectId, passedTests from attestation
-- **encode**: Create attestation data for EAS
+**Key Functions:**
+- `decode(bytes memory data)`: Extract commitHash, projectId, passedTests
+- `encode(bytes32 commitHash, string memory projectId, bool passedTests)`: Create attestation data
+- `validatePayload(bytes memory data)`: Check data validity
+
+### Test Coverage
+
+✅ **53 Tests Passing** (100% success rate)
+
+**KiroGatekeeper Tests (31):**
+- Constructor validation
+- Deployment with valid/invalid attestations
+- Revoked/expired attestation handling
+- Admin functions (pause, update)
+- Fuzz testing for security
+
+**KiroResolver Tests (22):**
+- Encode/decode roundtrip
+- Validation logic
+- Edge cases and fuzz tests
+
+## 🎨 Frontend Dashboard
+
+**Features:**
+- Real-time attestation monitoring
+- GraphQL integration with EAS
+- Network status indicator
+- Responsive design with TailwindCSS
+
+**Tech Stack:**
+- Next.js 14 (App Router)
+- TypeScript
+- TailwindCSS
+- EAS GraphQL API
+
+## 📊 Demo
+
+Run the full demo to see Kiro-CI in action:
+
+```bash
+node demo.js
+```
+
+**Demo Flow:**
+1. Connects to Base Sepolia
+2. Checks EAS integration
+3. Validates sample attestation
+4. Computes deployment address
+5. Shows successful deployment simulation
+
+## 🔗 Important Links
+
+### Deployed Contracts
+- **KiroGatekeeper**: `[To be deployed]`
+- **KiroResolver**: `[To be deployed]`
+- **EAS Schema**: `[To be registered]`
+
+### Base Sepolia Resources
+- **Explorer**: https://sepolia.basescan.org/
+- **EAS Explorer**: https://base-sepolia.easscan.org/
+- **Faucet**: https://faucet.quicknode.com/base/sepolia
+- **Bridge**: https://bridge.base.org/
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+forge test
+
+# Run with verbosity
+forge test -vv
+
+# Run specific test
+forge test --match-test testDeploySuccessfully
+
+# Gas report
+forge test --gas-report
+
+# Coverage
+forge coverage
+```
+
+## 🛡️ Security
+
+### Audited Patterns
+- ✅ OpenZeppelin contracts (Ownable, Pausable, ReentrancyGuard)
+- ✅ Custom errors for gas optimization
+- ✅ Checks-Effects-Interactions pattern
+- ✅ Comprehensive test coverage
+
+### Known Limitations
+- Relies on trusted attester (can be decentralized with DAO)
+- CREATE2 salt must be unique per attestation
+- No contract upgrade mechanism (intentional for immutability)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please check [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Team
+
+Built with ❤️ for **Hackxios 2K25** - ETHIndia Track
+
+## 🙏 Acknowledgments
+
+- [Ethereum Attestation Service (EAS)](https://attest.sh/) for on-chain attestations
+- [Base](https://base.org/) for the L2 infrastructure
+- [OpenZeppelin](https://www.openzeppelin.com/) for security patterns
+- [Foundry](https://book.getfoundry.sh/) for the development framework
+- ETHIndia community for inspiration
+
+## 📧 Contact
+
+For questions or feedback:
+- GitHub Issues: [Create an issue](../../issues)
+- Twitter: [@YourHandle]
+- Discord: [Your Discord]
+
+---
+
+**⚡ Built on Base | 🔐 Secured by EAS | 🤖 Powered by AI**
 - **validatePayload**: Check if tests passed
 
 ## 🧪 Testing
