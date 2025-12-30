@@ -1,0 +1,77 @@
+{
+  "vulnerabilityChecks": {
+    "reentrancy": {
+      "enabled": true,
+      "severity": "critical",
+      "autoFix": true,
+      "pattern": "function\\s+withdraw\\([^)]*\\)\\s*(public|external)",
+      "fix": {
+        "addImport": "import \"@openzeppelin/contracts/security/ReentrancyGuard.sol\";",
+        "addInheritance": "ReentrancyGuard",
+        "addModifier": "nonReentrant"
+      }
+    },
+    "integerOverflow": {
+      "enabled": true,
+      "severity": "high",
+      "autoFix": true,
+      "pattern": "uint256.*[+\\-*]",
+      "fix": {
+        "addImport": "import \"@openzeppelin/contracts/utils/math/SafeMath.sol\";",
+        "replaceMath": "SafeMath"
+      }
+    },
+    "accessControl": {
+      "enabled": true,
+      "severity": "critical",
+      "autoFix": false,
+      "pattern": "function\\s+(\\w+)\\([^)]*\\)\\s*public(?!.*onlyOwner)",
+      "warning": "Consider adding access control modifiers"
+    },
+    "uncheckedCall": {
+      "enabled": true,
+      "severity": "medium",
+      "autoFix": false,
+      "pattern": "\\.call\\{[^}]*\\}\\([^)]*\\);",
+      "warning": "Low-level calls should be checked for success"
+    }
+  },
+  "testingRules": {
+    "minimumCoverage": 80,
+    "requiredTests": [
+      "test_deposit",
+      "test_withdraw",
+      "test_transferOwnership"
+    ],
+    "failOnWarnings": false
+  },
+  "attestationConfig": {
+    "network": "base-sepolia",
+    "easContractAddress": "0x4200000000000000000000000000000000000021",
+    "schemaUID": "0x...",
+    "autoAttest": true,
+    "includeMetadata": {
+      "gitCommit": true,
+      "timestamp": true,
+      "testResults": true,
+      "codeHash": true
+    }
+  },
+  "agentBehavior": {
+    "autoFix": {
+      "enabled": true,
+      "confirmBeforeFix": false,
+      "maxAttempts": 3
+    },
+    "notifications": {
+      "onSuccess": true,
+      "onFailure": true,
+      "onAutoFix": true
+    },
+    "visualEffects": {
+      "animations": true,
+      "colors": true,
+      "sounds": false
+    }
+  }
+}

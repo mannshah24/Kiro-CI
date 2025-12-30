@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-gray-300 font-mono;
+  }
+}
+
+@layer utilities {
+  .glow-green {
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+  }
+
+  .glow-red {
+    text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040;
+  }
+
+  .border-glow-green {
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5),
+      inset 0 0 10px rgba(0, 255, 65, 0.1);
+  }
+
+  .glow-green-button {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.6), 0 0 40px rgba(0, 255, 65, 0.4);
+  }
+
+  .shadow-glow-green {
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply flex items-center gap-2 px-8 py-4 bg-green-500 text-black font-bold rounded-lg
+           hover:bg-green-400 hover:shadow-[0_0_30px_rgba(0,255,65,0.6)] 
+           transition-all duration-300 transform hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-green-500 
+           text-green-400 font-bold rounded-lg hover:bg-green-500/10 
+           hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all duration-300;
+  }
+}
